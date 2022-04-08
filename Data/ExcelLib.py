@@ -34,3 +34,16 @@ def read_data(sheetname, testcase):
             if temp_data[0].lower() == "yes":
                 data.append(tuple(temp_data[1:]))
     return [headers, data]
+
+def read_class_data(sheetname, testcase):
+    workbook = xlrd.open_workbook(Config.DATA_FILE_PATH)
+    worksheet = workbook.sheet_by_name(sheetname)
+    rows = worksheet.get_rows()
+    next(rows)
+    levels = set()
+    classes_sections = []
+    for row in rows:
+        if row[0].value == testcase:
+            levels.add(row[1].value)
+            classes_sections.append(str(int(row[2].value))+" - "+row[3].value)
+    return levels, classes_sections

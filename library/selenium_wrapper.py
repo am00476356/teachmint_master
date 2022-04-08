@@ -18,3 +18,20 @@ class SeleniumWrapper:
     def click_element(self, element):
         locator_type, locator_value = element
         self.driver.find_element(locator_type, locator_value).click()
+
+    @wait_()
+    def get_items_text(self, element):
+        locator_type, locator_value = element
+        _ele = self.driver.find_elements(locator_type, locator_value)
+        _text = []
+        for item in _ele:
+            _text = item.text
+        return _text
+
+    @wait_()
+    def get_element_attribute(self, element, *, attribute):
+        locator_type, locator_value = element
+        _ele = self.driver.find_element(locator_type, locator_value)
+        return _ele.get_attribute(attribute)
+
+

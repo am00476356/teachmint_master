@@ -27,5 +27,14 @@ class LoginPage(SeleniumWrapper):
         locator_verify_otp = LoginPage.LoginPage_Objects['verify_otp']
         self.click_element(locator_verify_otp)
 
+    def get_hierarchy_data(self):
+        locator_hierarchy_data = LoginPage.LoginPage_Objects['hierarchy']
+        return self.get_items_text(locator_hierarchy_data)
+
+
+
+
+
+
 
 
